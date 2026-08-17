@@ -18,7 +18,14 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
     <div className={styles.card}>
       <div className={styles.imageWrapper}>
         {/* <img src={recipe.imageUrl} alt={recipe.title} className={styles.image} /> */}
-        <Image src={recipe.imageUrl} alt={recipe.title} className={styles.image} />
+        <Image
+          src={recipe.imageUrl}
+          alt={recipe.title}
+          fill
+          className={styles.image}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+        
         <span className={styles.badge}>{recipe.category}</span>
         <button
           type="button"
