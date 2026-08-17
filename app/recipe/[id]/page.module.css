@@ -13,9 +13,10 @@
   color: var(--brand-slate);
   font-weight: 600;
   font-size: 0.9rem;
+  text-decoration: none;
 }
 
-.hero {
+.imageWrapper {
   position: relative;
   width: 100%;
   height: 350px;
@@ -33,6 +34,7 @@
 }
 
 .badge {
+  display: inline-block;
   background-color: var(--brand-sage);
   color: #ffffff;
   font-size: 0.75rem;
@@ -92,6 +94,7 @@
 
 .amount {
   color: var(--brand-terracotta);
+  font-weight: 600;
 }
 
 .instructionList {
@@ -104,4 +107,14 @@
 .instructionStep {
   line-height: 1.5;
   font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+  .imageWrapper {
+    height: 220px;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
 }

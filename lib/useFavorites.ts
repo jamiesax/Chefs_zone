@@ -1,31 +1,43 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function useFavorites() {
-  const [favorites, setFavorites] = useState<string[]>(() => {
-    if (typeof window === 'undefined') return [];
+  const [favorites, setFavorites] = useState<string[]>([]);
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Read from localStorage only after initial client mount
+  useEffect(() => {
+    setIsMounted(true);
     try {
       const stored = localStorage.getItem('chefs_zone_favorites');
-      return stored ? JSON.parse(stored) : [];
+      if (stored) {
+        setFavorites(JSON.parse(stored));
+      }
     } catch (e) {
-      console.error('Failed to parse favorites', e);
-      return [];
+      console.error('Failed to read favorites from localStorage', e);
     }
-  });
+  }, []);
 
-  const toggleFavorite = (recipeId: string) => {
-    setFavorites((prev) => {
-      const updated = prev.includes(recipeId)
-        ? prev.filter((id) => id !== recipeId)
-        : [...prev, recipeId];
+  // Update localStorage when favorites change (only after mounting)
+  useEffect(() => {
+    if (!isMounted) return;
+    try {
+      localStorage.setItem('chefs_zone_favorites', JSON.stringify(favorites));
+    } catch (e) {
+      console.error('Failed to save favorites to localStorage', e);
+    }
+  }, [favorites, isMounted]);
 
-      localStorage.setItem('chefs_zone_favorites', JSON.stringify(updated));
-      return updated;
-    });
+  const toggleFavorite = (id: string) => {
+    setFavorites((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
   };
 
-  const isFavorite = (recipeId: string) => favorites.includes(recipeId);
+  const isFavorite = (id: string) => {
+    return isMounted && favorites.includes(id);
+  };
 
-  return { favorites, toggleFavorite, isFavorite };
+  return { favorites, toggleFavorite, isFavorite, isMounted };
 }

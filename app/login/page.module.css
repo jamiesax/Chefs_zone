@@ -1,0 +1,96 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 16px;
+}
+
+.card {
+  background-color: var(--brand-card-bg);
+  border: 1px solid var(--brand-border);
+  border-radius: var(--radius-card);
+  padding: 32px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.backButton {
+  font-size: 0.85rem;
+  color: var(--brand-slate);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.title {
+  font-size: 1.75rem;
+  color: var(--brand-text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--brand-text-secondary);
+  margin: 0;
+}
+
+.error {
+  background-color: rgba(226, 114, 91, 0.1);
+  color: var(--brand-terracotta);
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--brand-text-primary);
+}
+
+.field input {
+  padding: 10px 12px;
+  border-radius: var(--radius-button);
+  border: 1px solid var(--brand-border);
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.field input:focus {
+  border-color: var(--brand-slate);
+}
+
+.submitBtn {
+  background-color: var(--brand-slate);
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  border-radius: var(--radius-button);
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.switchBtn {
+  background: none;
+  border: none;
+  color: var(--brand-text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
