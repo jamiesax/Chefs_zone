@@ -1,0 +1,108 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px;
+  background-color: var(--brand-card-bg);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.backButton {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--brand-slate);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.hero {
+  position: relative;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.image {
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  display: block;
+}
+
+.header {
+  padding: 16px 0;
+}
+
+.badge {
+  background-color: var(--brand-sage);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-badge);
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 8px 0;
+  color: var(--brand-text-primary);
+}
+
+.meta {
+  color: var(--brand-text-secondary);
+  font-size: 0.9rem;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--brand-text-secondary);
+  margin-bottom: 24px;
+}
+
+.content {
+  display: grid;
+  gap: 28px;
+}
+
+.section h2 {
+  font-size: 1.25rem;
+  color: var(--brand-slate);
+  margin-bottom: 12px;
+  border-bottom: 2px solid var(--brand-bg);
+  padding-bottom: 6px;
+}
+
+.ingredientList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ingredientItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background-color: var(--brand-bg);
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.amount {
+  color: var(--brand-terracotta);
+}
+
+.instructionList {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.instructionStep {
+  line-height: 1.5;
+  font-size: 0.95rem;
+}

@@ -1,0 +1,29 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 8px;
+}
+
+.header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--brand-slate);
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: var(--brand-text-secondary);
+  margin-top: 4px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
