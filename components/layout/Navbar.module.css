@@ -1,0 +1,120 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--brand-card-bg);
+  border-bottom: 1px solid var(--brand-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.logoIcon {
+  font-size: 1.5rem;
+}
+
+.brandTitle {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--brand-slate);
+  letter-spacing: -0.5px;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.link {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--brand-text-secondary);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.link:hover {
+  color: var(--brand-slate);
+  background-color: var(--brand-bg);
+}
+
+.active {
+  color: var(--brand-slate);
+  background-color: var(--brand-bg);
+}
+
+.authActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.createBtn {
+  background-color: var(--brand-terracotta);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signInBtn {
+  background-color: var(--brand-slate);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signOutBtn {
+  background: transparent;
+  border: 1px solid var(--brand-border);
+  color: var(--brand-text-secondary);
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.signOutBtn:hover {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border-color: #fca5a5;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .navLinks {
+    order: 3;
+    width: 100%;
+    justify-content: space-around;
+    border-top: 1px solid var(--brand-border);
+    padding-top: 8px;
+  }
+}

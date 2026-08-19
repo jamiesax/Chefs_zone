@@ -1,0 +1,193 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.headerCard {
+  background-color: var(--brand-card-bg);
+  border: 1px solid var(--brand-border);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.avatarWrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--brand-sage);
+  flex-shrink: 0;
+}
+
+.avatarImage {
+  object-fit: cover;
+}
+
+.avatarPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.uploadLabel {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 4px 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.uploadLabel:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.userName {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--brand-text-primary);
+  margin: 0;
+}
+
+.userEmail {
+  font-size: 0.95rem;
+  color: var(--brand-text-secondary);
+  margin: 0;
+}
+
+.badge {
+  display: inline-block;
+  margin-top: 8px;
+  align-self: flex-start;
+  background-color: var(--brand-bg);
+  color: var(--brand-slate);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.tabNav {
+  display: flex;
+  gap: 12px;
+  border-bottom: 2px solid var(--brand-border);
+  padding-bottom: 8px;
+}
+
+.tabBtn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--brand-text-secondary);
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.tabBtn:hover {
+  color: var(--brand-slate);
+  background-color: var(--brand-bg);
+}
+
+.activeTab {
+  color: var(--brand-slate);
+  background-color: var(--brand-bg);
+  box-shadow: inset 0 -2px 0 var(--brand-terracotta);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ownerControls {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.deleteBtn {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fca5a5;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  background-color: #fca5a5;
+  color: #7f1d1d;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 48px 16px;
+  background-color: var(--brand-card-bg);
+  border: 1px dashed var(--brand-border);
+  border-radius: var(--radius-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.actionBtn {
+  background-color: var(--brand-slate);
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .headerCard {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .badge {
+    align-self: center;
+  }
+}
