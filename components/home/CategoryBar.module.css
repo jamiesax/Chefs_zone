@@ -1,0 +1,37 @@
+.bar {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 12px 0;
+  scrollbar-width: none; /* Hide scrollbar for Chrome/Safari/Firefox */
+}
+
+.bar::-webkit-scrollbar {
+  display: none;
+}
+
+.pill {
+  background-color: var(--brand-bg);
+  color: var(--brand-text-secondary);
+  border: 1px solid var(--brand-border);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.pill:hover {
+  border-color: var(--brand-slate);
+  color: var(--brand-slate);
+}
+
+/* Highlighted Active Category */
+.pill.active {
+  background-color: var(--brand-slate);
+  color: #ffffff;
+  border-color: var(--brand-slate);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+}

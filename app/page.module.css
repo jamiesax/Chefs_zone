@@ -22,8 +22,85 @@
   margin-top: 4px;
 }
 
+/* Category Filter Pills */
+.pillBar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+}
+
+.pillBar::-webkit-scrollbar {
+  display: none;
+}
+
+.pill {
+  background-color: var(--brand-bg);
+  border: 1px solid var(--brand-border);
+  color: var(--brand-text-secondary);
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.pill:hover {
+  border-color: var(--brand-slate);
+  color: var(--brand-slate);
+}
+
+.activePill {
+  background-color: var(--brand-slate);
+  color: #ffffff;
+  border-color: var(--brand-slate);
+}
+
+/* Regional Sections */
+.section {
+  margin-bottom: 48px;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--brand-slate);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Recipe Card Grid */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--brand-text-secondary);
+}
+
+.resetBtn {
+  margin-top: 12px;
+  background-color: var(--brand-slate);
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { createClient } from "@/lib/supabase/server";
 import Navbar from "@/components/layout/Navbar";
@@ -14,9 +14,35 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  themeColor: "#FF6B00", // Primary brand accent color
+};
+
 export const metadata: Metadata = {
-  title: "Chef's Zone | Your Happy Place in the Kitchen",
-  description: "Explore, save, and publish custom recipes.",
+  title: {
+    default: "Chef's Zone | Culinary Discovery & Homemade Recipes",
+    template: "%s | Chef's Zone",
+  },
+  description:
+    "Discover, curate, and share authentic homemade recipes from African, Intercontinental, and Dessert cuisines around the world.",
+  keywords: [
+    "recipes",
+    "cooking",
+    "homemade meals",
+    "African food",
+    "Nigerian recipes",
+    "intercontinental dishes",
+    "desserts",
+    "Chef's Zone",
+  ],
+  authors: [{ name: "Chef's Zone Team" }],
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-icon.png" }],
+  },
 };
 
 export default async function RootLayout({

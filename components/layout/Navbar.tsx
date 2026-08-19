@@ -1,70 +1,130 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { User } from '@supabase/supabase-js';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { createClient } from '@/lib/supabase/client';
+import type { User } from '@supabase/supabase-js';
 import styles from './Navbar.module.css';
+import Navlogo from '@/public/images/navlogo.png';
 
 interface NavbarProps {
-  user: User | null;
+  user?: User | null;
+  onSelectRegion?: (region: string) => void;
+  onSignOut?: () => void;
 }
 
-export default function Navbar({ user }: NavbarProps) {
-  const pathname = usePathname();
+export default function Navbar({ user, onSelectRegion, onSignOut }: NavbarProps) {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  const router = useRouter();
+  const supabase = createClient();
 
-  const isActive = (path: string) => pathname === path;
+  const handleRegionClick = (region: string) => {
+    if (onSelectRegion) {
+      onSelectRegion(region);
+    }
+    setDropdownOpen(false);
+    setIsMobileMenuOpen(false);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    setDropdownOpen(false);
+  };
+
+  const handleSignOut = async () => {
+    closeMobileMenu();
+
+    if (onSignOut) {
+      onSignOut();
+      return;
+    }
+
+    // Sign out client-side
+    await supabase.auth.signOut();
+    
+    // Redirect and force Server Components to re-fetch auth state
+    router.push('/login');
+    router.refresh();
+  };
 
   return (
-    <header className={styles.header}>
+    <header className={styles.navbar}>
       <div className={styles.container}>
-        <Link href="/" className={styles.brand}>
-          <span className={styles.logoIcon}>🍳</span>
-          <span className={styles.brandTitle}>Chef&apos;s Zone</span>
+        <Link href="/" className={styles.logo} onClick={closeMobileMenu}>
+          <Image 
+            src={Navlogo} 
+            alt="Chef's Zone Logo" 
+            priority 
+            className={styles.logoImg}
+          />
         </Link>
 
-        <nav className={styles.navLinks}>
-          <Link
-            href="/"
-            className={`${styles.link} ${isActive('/') ? styles.active : ''}`}
-          >
-            Explore
-          </Link>
+        {/* Mobile Hamburger Toggle Button */}
+        <button 
+          className={styles.mobileToggle} 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle Navigation"
+        >
+          {isMobileMenuOpen ? '✕' : '☰'}
+        </button>
 
-          <Link
-            href="/saved"
-            className={`${styles.link} ${isActive('/saved') ? styles.active : ''}`}
+        <nav className={`${styles.navLinks} ${isMobileMenuOpen ? styles.mobileOpen : ''}`}>
+          {/* Explore Dropdown */}
+          <div 
+            className={styles.dropdownWrapper}
+            onMouseEnter={() => setDropdownOpen(true)}
+            onMouseLeave={() => setDropdownOpen(false)}
           >
+            <button 
+              className={styles.navBtn}
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+            >
+              Explore ▾
+            </button>
+
+            {dropdownOpen && (
+              <div className={styles.dropdownMenu}>
+                <button onClick={() => handleRegionClick('All')} className={styles.dropdownItem}>
+                  🌍 All Cuisines
+                </button>
+                <button onClick={() => handleRegionClick('African')} className={styles.dropdownItem}>
+                  🇳🇬 African / Nigerian
+                </button>
+                <button onClick={() => handleRegionClick('Intercontinental')} className={styles.dropdownItem}>
+                  🍽️ Intercontinental
+                </button>
+                <button onClick={() => handleRegionClick('Desserts')} className={styles.dropdownItem}>
+                  🍰 Desserts & Sweets
+                </button>
+              </div>
+            )}
+          </div>
+
+          <Link href="/saved" className={styles.link} onClick={closeMobileMenu}>
             ❤️ Saved
           </Link>
+          <Link href="/profile" className={styles.link} onClick={closeMobileMenu}>
+            👨‍🍳 My Kitchen
+          </Link>
+          <Link href="/recipe/create" className={styles.addBtn} onClick={closeMobileMenu}>
+            + Add Recipe
+          </Link>
 
-          {user && (
-            <Link
-              href="/profile"
-              className={`${styles.link} ${isActive('/profile') ? styles.active : ''}`}
-            >
-              👨‍🍳 My Kitchen
-            </Link>
-          )}
-        </nav>
-
-        <div className={styles.authActions}>
+          {/* Render Sign Out or Login conditionally based on user state */}
           {user ? (
-            <>
-              <Link href="/create" className={styles.createBtn}>
-                ➕ Add Recipe
-              </Link>
-              <form action="/auth/signout" method="post">
-                <button type="submit" className={styles.signOutBtn}>
-                  Sign Out
-                </button>
-              </form>
-            </>
+            <button onClick={handleSignOut} className={styles.signOutBtn}>
+              Sign Out
+            </button>
           ) : (
-            <Link href="/login" className={styles.signInBtn}>
+            <Link href="/login" className={styles.link} onClick={closeMobileMenu}>
               Sign In
             </Link>
           )}
-        </div>
+        </nav>
       </div>
     </header>
   );

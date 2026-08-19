@@ -145,12 +145,17 @@ export default function ProfileClient({ user, initialRecipes }: ProfileClientPro
                   <div key={recipe.id} className={styles.cardWrapper}>
                     <RecipeCard recipe={recipe} />
                     <div className={styles.ownerControls}>
-                      <button
+
+                    <Link href={`/recipe/${recipe.id}/edit`} className={styles.editBtn}>
+                        ✏️ Edit
+                    </Link>
+                    <button
                         onClick={() => handleDeleteRecipe(recipe.id)}
                         className={styles.deleteBtn}
-                      >
+                    >
                         🗑️ Delete
-                      </button>
+                    </button>
+
                     </div>
                   </div>
                 ))}

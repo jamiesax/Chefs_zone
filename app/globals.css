@@ -36,3 +36,13 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+/* Add to app/globals.css */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevents fixed navbar from covering section titles when jumped to */
+section[id] {
+  scroll-margin-top: 80px; 
+}

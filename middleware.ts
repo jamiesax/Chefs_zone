@@ -31,10 +31,14 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Protect /create route from unauthenticated users
-  if (!user && request.nextUrl.pathname.startsWith('/create')) {
+  // Protected routes check
+  const isProtectedRoute = request.nextUrl.pathname.startsWith('/recipe/create') || 
+                           request.nextUrl.pathname.startsWith('/saved');
+
+  if (!user && isProtectedRoute) {
     const url = request.nextUrl.clone();
     url.pathname = '/login';
+    url.searchParams.set('redirectTo', request.nextUrl.pathname);
     return NextResponse.redirect(url);
   }
 
