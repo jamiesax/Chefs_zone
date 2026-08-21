@@ -7,7 +7,6 @@ export async function middleware(request: NextRequest) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  // Safe fallback if variables fail to load
   if (!supabaseUrl || !supabaseAnonKey) {
     return supabaseResponse;
   }
