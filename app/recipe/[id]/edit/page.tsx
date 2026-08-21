@@ -44,6 +44,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
     ingredients: recipe.ingredients,
     instructions: recipe.instructions,
     userId: recipe.user_id,
+    region: recipe.region
   };
 
   return <EditRecipeClient recipe={formattedRecipe} />;

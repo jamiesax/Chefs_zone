@@ -12,13 +12,14 @@ export default function CreateRecipePage() {
 
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('Breakfast');
+  const [region, setRegion] = useState('African');
   const [prepTime, setPrepTime] = useState('20 mins');
   const [servings, setServings] = useState(2);
   const [description, setDescription] = useState('');
-  
+
   // File Upload State
   const [imageFile, setImageFile] = useState<File | null>(null);
-  
+
   const [ingredients, setIngredients] = useState([{ name: '', amount: '' }]);
   const [instructions, setInstructions] = useState(['']);
   const [loading, setLoading] = useState(false);
@@ -93,6 +94,7 @@ export default function CreateRecipePage() {
         user_id: user.id,
         title,
         category,
+        region,
         prep_time: prepTime,
         servings: Number(servings),
         description,
@@ -148,6 +150,18 @@ export default function CreateRecipePage() {
               <option value="Dinner">Dinner</option>
               <option value="Dessert">Dessert</option>
               <option value="Snack">Snack</option>
+            </select>
+          </div>
+
+          <div className={styles.field}>
+            <label htmlFor="region">Region</label>
+            <select
+              id="region"
+              value={region}
+              onChange={(e) => setRegion(e.target.value)}
+            >
+              <option value="African">African</option>
+              <option value="Intercontinental">Intercontinental</option>
             </select>
           </div>
         </div>

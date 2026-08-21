@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
-import { Recipe } from '@/types/index';
+import { Recipe, MealCategory } from '@/types/index';
 import styles from './Edit.module.css';
 
 interface EditRecipeClientProps {
@@ -15,7 +15,8 @@ export default function EditRecipeClient({ recipe }: EditRecipeClientProps) {
   const supabase = createClient();
 
   const [title, setTitle] = useState(recipe.title);
-  const [category, setCategory] = useState(recipe.category);
+  const [category, setCategory] = useState<MealCategory>(recipe.category);
+  const [region, setRegion] = useState<string>(recipe.region || 'African');
   const [prepTime, setPrepTime] = useState(recipe.prepTime);
   const [servings, setServings] = useState(recipe.servings);
   const [description, setDescription] = useState(recipe.description);
@@ -26,7 +27,7 @@ export default function EditRecipeClient({ recipe }: EditRecipeClientProps) {
   const [instructions, setInstructions] = useState<string[]>(
     Array.isArray(recipe.instructions) ? recipe.instructions : []
   );
-  
+
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -79,6 +80,7 @@ export default function EditRecipeClient({ recipe }: EditRecipeClientProps) {
         .update({
           title,
           category,
+          region,
           prep_time: prepTime,
           servings: Number(servings),
           description,
@@ -121,13 +123,25 @@ export default function EditRecipeClient({ recipe }: EditRecipeClientProps) {
             <label className={styles.label}>Category</label>
             <select
               value={category}
-              onChange={(e) => setCategory(e.target.value)}
+              onChange={(e) => setCategory(e.target.value as MealCategory)}
               className={styles.select}
             >
               <option value="Breakfast">Breakfast</option>
               <option value="Lunch">Lunch</option>
               <option value="Dinner">Dinner</option>
               <option value="Desserts">Desserts</option>
+            </select>
+          </div>
+
+          <div className={styles.group}>
+            <label className={styles.label}>Region</label>
+            <select
+              value={region}
+              onChange={(e) => setRegion(e.target.value)}
+              className={styles.select}
+            >
+              <option value="African">African</option>
+              <option value="Intercontinental">Intercontinental</option>
             </select>
           </div>
 
@@ -207,7 +221,7 @@ export default function EditRecipeClient({ recipe }: EditRecipeClientProps) {
             onClick={() => addItem(ingredients, setIngredients)}
             className={styles.addBtn}
           >
-            + Add Ingredient
+            Add Ingredient
           </button>
         </div>
 

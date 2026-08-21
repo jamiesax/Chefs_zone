@@ -11,25 +11,35 @@ interface RecipeFeedProps {
 
 const CATEGORIES = ['All', 'Healthy', 'Breakfast', 'Quick'];
 
+// Helper function to safely extract string from ingredient items
+function getIngredientText(ing: unknown): string {
+  if (typeof ing === 'string') return ing;
+  if (typeof ing === 'object' && ing !== null) {
+    const obj = ing as Record<string, unknown>;
+    return String(obj.name || obj.ingredient || obj.title || '');
+  }
+  return String(ing || '');
+}
+
 export default function RecipeFeed({ initialRecipes }: RecipeFeedProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const filteredRecipes = useMemo(() => {
     return initialRecipes.filter((recipe) => {
+      const query = searchQuery.toLowerCase();
+
       const matchesSearch =
-        recipe.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        recipe.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        recipe.title.toLowerCase().includes(query) ||
+        recipe.description.toLowerCase().includes(query) ||
+        (recipe.region && recipe.region.toLowerCase().includes(query)) ||
         recipe.ingredients.some((ing) =>
-          ing.name.toLowerCase().includes(searchQuery.toLowerCase())
+          getIngredientText(ing).toLowerCase().includes(query)
         );
 
       const matchesCategory =
         selectedCategory === 'All' ||
-        recipe.category.toLowerCase() === selectedCategory.toLowerCase() ||
-        recipe.tags.some(
-          (tag) => tag.toLowerCase() === selectedCategory.toLowerCase()
-        );
+        recipe.category.toLowerCase() === selectedCategory.toLowerCase();
 
       return matchesSearch && matchesCategory;
     });
@@ -41,7 +51,7 @@ export default function RecipeFeed({ initialRecipes }: RecipeFeedProps) {
       <div className={styles.searchContainer}>
         <input
           type="text"
-          placeholder="Search recipes or ingredients..."
+          placeholder="Search recipes, ingredients, or regions..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className={styles.searchInput}

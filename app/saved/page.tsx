@@ -6,7 +6,7 @@ import { useFavorites } from '@/lib/useFavorites';
 import { MOCK_RECIPES } from '@/data/recipes';
 import { createClient } from '@/lib/supabase/client';
 import RecipeCard from '@/components/recipe/RecipeCard';
-import { Recipe } from '@/types/recipe';
+import { Recipe } from '@/types/index';
 import styles from './page.module.css';
 
 export default function SavedRecipesPage() {
@@ -22,6 +22,7 @@ export default function SavedRecipesPage() {
           id: item.id,
           title: item.title,
           category: item.category,
+          region: item.region || 'African',
           prepTime: item.prep_time,
           servings: item.servings,
           description: item.description,

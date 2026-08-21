@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { User } from '@supabase/supabase-js';
 import { createClient } from '@/lib/supabase/client';
-import { Recipe } from '@/types/recipe';
+import { Recipe } from '@/types/index';
 import RecipeCard from '@/components/recipe/RecipeCard';
 import { useFavorites } from '@/lib/useFavorites';
 import { MOCK_RECIPES } from '@/data/recipes';

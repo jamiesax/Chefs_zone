@@ -23,6 +23,7 @@ export default async function ProfilePage() {
     id: item.id,
     title: item.title,
     category: item.category,
+    region: item.region || 'African',
     prepTime: item.prep_time,
     servings: item.servings,
     description: item.description,

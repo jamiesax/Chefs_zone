@@ -13,6 +13,18 @@ interface RecipeDetailClientProps {
   instructionsList: string[];
 }
 
+function formatItemString(item: unknown): string {
+  if (typeof item === 'string') return item;
+  if (typeof item === 'object' && item !== null) {
+    const obj = item as Record<string, unknown>;
+    const amount = obj.amount ? `${obj.amount} ` : '';
+    const unit = obj.unit ? `${obj.unit} ` : '';
+    const name = obj.name || obj.ingredient || obj.title || '';
+    return `${amount}${unit}${name}`.trim() || JSON.stringify(item);
+  }
+  return String(item);
+}
+
 export default function RecipeDetailClient({
   recipe,
   ingredientsList,
@@ -22,7 +34,6 @@ export default function RecipeDetailClient({
 
   return (
     <main className={styles.container}>
-      {/* 1. Cleaned Top Bar with back link only */}
       <div className={styles.topBar}>
         <Link href="/" className={styles.backBtn}>
           ← Back to Recipes
@@ -54,9 +65,14 @@ export default function RecipeDetailClient({
               <span className={styles.statLabel}>Servings</span>
               <span className={styles.statValue}>{recipe.servings}</span>
             </div>
+            {recipe.region && (
+              <div className={styles.statItem}>
+                <span className={styles.statLabel}>Region</span>
+                <span className={styles.statValue}>{recipe.region}</span>
+              </div>
+            )}
           </div>
 
-          {/* 2. Moved here: Directly under stats */}
           <button
             onClick={() => setCookModeOpen(true)}
             className={styles.cookModeBtn}
@@ -72,7 +88,7 @@ export default function RecipeDetailClient({
           <ul className={styles.ingredientsList}>
             {ingredientsList.map((item, idx) => (
               <li key={idx} className={styles.ingredientItem}>
-                <span className={styles.bullet}>•</span> {item}
+                <span className={styles.bullet}>•</span> {formatItemString(item)}
               </li>
             ))}
           </ul>
@@ -84,18 +100,17 @@ export default function RecipeDetailClient({
             {instructionsList.map((step, idx) => (
               <li key={idx} className={styles.instructionItem}>
                 <span className={styles.stepNum}>{idx + 1}</span>
-                <p>{step}</p>
+                <p>{formatItemString(step)}</p>
               </li>
             ))}
           </ol>
         </section>
       </div>
 
-      {/* Render Cook Mode Modal */}
       {cookModeOpen && (
         <CookModeModal
           recipeTitle={recipe.title}
-          instructions={instructionsList}
+          instructions={instructionsList.map((s) => formatItemString(s))}
           onClose={() => setCookModeOpen(false)}
         />
       )}

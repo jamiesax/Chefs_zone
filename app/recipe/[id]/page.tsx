@@ -8,16 +8,37 @@ interface RecipeDetailPageProps {
 }
 
 function parseList(data: unknown): string[] {
-  if (Array.isArray(data)) return data;
+  if (!data) return [];
+
+  let list = data;
+
+  // Attempt to parse stringified JSON first
   if (typeof data === 'string') {
     try {
-      const parsed = JSON.parse(data);
-      return Array.isArray(parsed) ? parsed : [];
+      list = JSON.parse(data);
     } catch {
       return [data];
     }
   }
-  return [];
+
+  if (!Array.isArray(list)) return [];
+
+  // Safely map elements (strings or objects) into formatted string strings
+  return list.map((item) => {
+    if (typeof item === 'string') return item;
+
+    if (typeof item === 'object' && item !== null) {
+      const obj = item as Record<string, unknown>;
+      const amount = obj.amount ? `${obj.amount} ` : '';
+      const unit = obj.unit ? `${obj.unit} ` : '';
+      const name = obj.name || obj.ingredient || obj.title || '';
+
+      const combined = `${amount}${unit}${name}`.trim();
+      return combined || JSON.stringify(item);
+    }
+
+    return String(item);
+  });
 }
 
 export default async function RecipeDetailPage({ params }: RecipeDetailPageProps) {
@@ -38,6 +59,7 @@ export default async function RecipeDetailPage({ params }: RecipeDetailPageProps
         id: dbRecipe.id,
         title: dbRecipe.title,
         category: dbRecipe.category,
+        region: dbRecipe.region || 'African', // Added required region field with fallback
         prepTime: dbRecipe.prep_time,
         servings: dbRecipe.servings,
         description: dbRecipe.description,
