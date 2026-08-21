@@ -40,7 +40,7 @@
 .navLinks {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 55px;
 }
 
 .link {
@@ -108,7 +108,7 @@
 .addBtn {
   background-color: var(--brand-terracotta);
   color: #ffffff;
-  padding: 8px 16px;
+  padding: 6px 12px;
   border-radius: 8px;
   font-weight: 700;
   text-decoration: none;

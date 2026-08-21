@@ -23,11 +23,25 @@ export default function Navbar({ user, onSelectRegion, onSignOut }: NavbarProps)
   const supabase = createClient();
 
   const handleRegionClick = (region: string) => {
+    // 1. Notify parent / HomeClient to change state
     if (onSelectRegion) {
       onSelectRegion(region);
     }
     setDropdownOpen(false);
     setIsMobileMenuOpen(false);
+
+    // 2. Perform smooth scroll directly to the chosen section
+    setTimeout(() => {
+      let targetId = 'recipes-section';
+      if (region === 'African') targetId = 'section-african';
+      if (region === 'Intercontinental') targetId = 'section-intercontinental';
+      if (region === 'Desserts') targetId = 'section-desserts';
+
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
   };
 
   const closeMobileMenu = () => {
@@ -43,10 +57,7 @@ export default function Navbar({ user, onSelectRegion, onSignOut }: NavbarProps)
       return;
     }
 
-    // Sign out client-side
     await supabase.auth.signOut();
-    
-    // Redirect and force Server Components to re-fetch auth state
     router.push('/login');
     router.refresh();
   };
@@ -63,7 +74,6 @@ export default function Navbar({ user, onSelectRegion, onSignOut }: NavbarProps)
           />
         </Link>
 
-        {/* Mobile Hamburger Toggle Button */}
         <button 
           className={styles.mobileToggle} 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -73,7 +83,6 @@ export default function Navbar({ user, onSelectRegion, onSignOut }: NavbarProps)
         </button>
 
         <nav className={`${styles.navLinks} ${isMobileMenuOpen ? styles.mobileOpen : ''}`}>
-          {/* Explore Dropdown */}
           <div 
             className={styles.dropdownWrapper}
             onMouseEnter={() => setDropdownOpen(true)}
@@ -89,16 +98,16 @@ export default function Navbar({ user, onSelectRegion, onSignOut }: NavbarProps)
             {dropdownOpen && (
               <div className={styles.dropdownMenu}>
                 <button onClick={() => handleRegionClick('All')} className={styles.dropdownItem}>
-                  🌍 All Cuisines
+                  All Cuisines
                 </button>
                 <button onClick={() => handleRegionClick('African')} className={styles.dropdownItem}>
                   🇳🇬 African / Nigerian
                 </button>
                 <button onClick={() => handleRegionClick('Intercontinental')} className={styles.dropdownItem}>
-                  🍽️ Intercontinental
+                  Intercontinental
                 </button>
                 <button onClick={() => handleRegionClick('Desserts')} className={styles.dropdownItem}>
-                  🍰 Desserts & Sweets
+                  Desserts & Sweets
                 </button>
               </div>
             )}
@@ -108,13 +117,9 @@ export default function Navbar({ user, onSelectRegion, onSignOut }: NavbarProps)
             ❤️ Saved
           </Link>
           <Link href="/profile" className={styles.link} onClick={closeMobileMenu}>
-            👨‍🍳 My Kitchen
-          </Link>
-          <Link href="/recipe/create" className={styles.addBtn} onClick={closeMobileMenu}>
-            + Add Recipe
+            My Kitchen
           </Link>
 
-          {/* Render Sign Out or Login conditionally based on user state */}
           {user ? (
             <button onClick={handleSignOut} className={styles.signOutBtn}>
               Sign Out
@@ -124,6 +129,10 @@ export default function Navbar({ user, onSelectRegion, onSignOut }: NavbarProps)
               Sign In
             </Link>
           )}
+
+          <Link href="/create" className={styles.addBtn} onClick={closeMobileMenu}>
+            Add Recipe
+          </Link>
         </nav>
       </div>
     </header>

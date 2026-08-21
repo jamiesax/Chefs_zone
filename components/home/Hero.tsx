@@ -1,6 +1,8 @@
 'use client';
 
 import styles from './Hero.module.css';
+import Image from 'next/image';
+import Logo from '@/public/images/logo.png'
 
 interface HeroProps {
   activeCategory: string;
@@ -31,6 +33,17 @@ export default function Hero({
   return (
     <section className={styles.hero}>
       <div className={styles.content}>
+        <div className={styles.imgWrapper}>
+          <Image 
+            src={Logo}
+            alt="Chef's Zone Logo" 
+            width={80} 
+            height={80}
+            priority 
+            className={styles.heroLogo} 
+          />
+        </div>
+
         <h1 className={styles.title}>
           Your Happy Place in the <span className={styles.highlight}>Kitchen</span>
         </h1>

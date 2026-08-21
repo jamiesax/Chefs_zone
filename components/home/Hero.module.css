@@ -5,6 +5,20 @@
   text-align: center;
 }
 
+.imgWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -4px; /* Adjust spacing between logo and heading */
+}
+
+.heroLogo {
+  width: 180px;         /* Adjust size to fit your preference */
+  height: auto;
+  object-fit: contain;
+  opacity: 1;          /* Full visibility */
+}
+
 .content {
   max-width: 720px;
   margin: 0 auto;

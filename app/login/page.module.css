@@ -25,16 +25,32 @@
   font-weight: 600;
 }
 
+.imgWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -4px;
+}
+
+.heroLogo {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+  opacity: 2;
+}
+
 .title {
   font-size: 1.75rem;
   color: var(--brand-text-primary);
   margin: 0;
+  text-align: center;
 }
 
 .subtitle {
   font-size: 0.9rem;
   color: var(--brand-text-secondary);
   margin: 0;
+  text-align: center;
 }
 
 .error {

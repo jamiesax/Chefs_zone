@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
 import styles from './page.module.css';
+import Image from 'next/image';
+import Logo from '@/public/images/logo.png'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -41,12 +43,23 @@ export default function LoginPage() {
     <main className={styles.container}>
       <div className={styles.card}>
         <Link href="/" className={styles.backButton}>
-          ← Back to Chef&apos;s Zone
+          ← Back
         </Link>
+
+        <div className={styles.imgWrapper}>
+          <Image 
+            src={Logo}
+            alt="Chef's Zone Logo" 
+            width={40} 
+            height={40}
+            priority 
+            className={styles.heroLogo} 
+          />
+        </div>
         
         <h1 className={styles.title}>{isSignUp ? 'Create Account' : 'Welcome Back'}</h1>
         <p className={styles.subtitle}>
-          {isSignUp ? 'Sign up to share your own custom recipes.' : 'Sign in to access your Chef&apos;s Zone profile.'}
+          {isSignUp ? 'Sign up to share your own custom recipes.' : `Sign in to access your Chef's Zone profile.`}
         </p>
 
         {error && <div className={styles.error}>{error}</div>}
