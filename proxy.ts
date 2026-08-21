@@ -1,17 +1,14 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
-export async function proxy(request: NextRequest) {
-  let supabaseResponse = NextResponse.next({
-    request,
-  });
+export async function middleware(request: NextRequest) {
+  let supabaseResponse = NextResponse.next({ request });
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  // Prevent Edge function crash if env vars are missing on deployment
+  // Safe fallback if variables fail to load
   if (!supabaseUrl || !supabaseAnonKey) {
-    console.error('Missing Supabase environment variables in Edge Proxy/Middleware');
     return supabaseResponse;
   }
 
@@ -24,9 +21,7 @@ export async function proxy(request: NextRequest) {
         cookiesToSet.forEach(({ name, value }) =>
           request.cookies.set(name, value)
         );
-        supabaseResponse = NextResponse.next({
-          request,
-        });
+        supabaseResponse = NextResponse.next({ request });
         cookiesToSet.forEach(({ name, value, options }) =>
           supabaseResponse.cookies.set(name, value, options)
         );
@@ -38,18 +33,17 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Protected routes check
+  const pathname = request.nextUrl.pathname;
   const isProtectedRoute =
-    request.nextUrl.pathname.startsWith('/recipe/create') ||
-    request.nextUrl.pathname.startsWith('/create') ||
-    request.nextUrl.pathname.startsWith('/saved') ||
-    request.nextUrl.pathname.startsWith('/profile');
+    pathname.startsWith('/recipe/create') ||
+    pathname.startsWith('/create') ||
+    pathname.startsWith('/saved') ||
+    pathname.startsWith('/profile');
 
   if (!user && isProtectedRoute) {
-    const url = request.nextUrl.clone();
-    url.pathname = '/login';
-    url.searchParams.set('redirectTo', request.nextUrl.pathname);
-    return NextResponse.redirect(url);
+    const redirectUrl = new URL('/login', request.url);
+    redirectUrl.searchParams.set('redirectTo', pathname);
+    return NextResponse.redirect(redirectUrl);
   }
 
   return supabaseResponse;
