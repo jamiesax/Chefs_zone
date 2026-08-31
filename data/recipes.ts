@@ -1,4 +1,48 @@
 import { Recipe } from '@/types/index';
+import Pap from '@/public/images/papnakara.jpg'
+import YamnEgg from '@/public/images/yamnegg_sauce.jpg'
+import SmokeyJollof from '@/public/images/SmokeyPartyJollofRice.jpg'
+import EgusiPoundedYam from '@/public/images/egusi_n_poundedyam.jpg'
+import Eforiro from '@/public/images/eforiro.jpg'
+import Asun from '@/public/images/asun.jpg'
+import Ofada from '@/public/images/ofada.jpg'
+import FriedRice from '@/public/images/friedRice.jpg'
+import Moimoi from '@/public/images/moimoi.jpg'
+import YamPorrige from '@/public/images/yam_porridge.jpg'
+import Afang from '@/public/images/afang.jpg'
+import ChickenSuya from '@/public/images/chickenSuya.jpg'
+import BangaSoup from '@/public/images/banga.jpg'
+import BeefStew from '@/public/images/beefStew.jpg'
+import PepperSoupGoatMeat from '@/public/images/goatMeat.jpg'
+import CoconutRice from '@/public/images/coconutRice.jpg'
+import Teriyaki from '@/public/images/teriyaki.jpg'
+import Pancakes from '@/public/images/pancakes.jpg'
+import AvocadoToast from '@/public/images/avocadoToast.jpg'
+import SmokedSalmon from '@/public/images/SmokedSalmon.jpg'
+import Alfredo from '@/public/images/alfredo.jpg'
+import RibeyeSteak from '@/public/images/RibeyeSteak.jpg'
+import TikkaMasala from '@/public/images/tikkaMasala.jpg'
+import ShawarmaWrap from '@/public/images/shawarmaWrap.jpg'
+import BeefLasagna from '@/public/images/beeflasagna.jpg'
+import ThaiGreenCurry from '@/public/images/thaiGreenCurry.jpg'
+import SeaFoodPaella from '@/public/images/seafoodPaella.jpg'
+import StirFriedNoodle from '@/public/images/stirfriedchicken.jpg'
+import Margherita from '@/public/images/margheritaPizza.jpg'
+import Tuscan from '@/public/images/tuscan.jpg'
+import BeefTacos from '@/public/images/beeftacos.jpg'
+import Puffpuff from '@/public/images/puffpuff.jpg'
+import LavaCake from '@/public/images/lavacake.jpg'
+import Leches from '@/public/images/leches.jpg'
+import Chinchin from '@/public/images/chinchin.jpg'
+import BananaBread from '@/public/images/bananabread.jpg'
+import Redvelvet from '@/public/images/redvelvet.jpg'
+import NewyorkCheese from '@/public/images/newyorkcheese.jpg'
+import ChocolateBrownies from '@/public/images/chocolatebrownies.jpg'
+import AppleCrumbles from '@/public/images/applecrumbles.jpg'
+import ChocoMousse from '@/public/images/chocomousse.jpg'
+import CarrotCake from '@/public/images/carrotcake.jpg'
+import MangoCoconutParfait from '@/public/images/mangococonutparfait.jpg'
+import CoconutMaroons from '@/public/images/coconutmarons.jpg'
 
 export const MOCK_RECIPES: Recipe[] = [
 
@@ -12,7 +56,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Breakfast',
     prepTime: '25 mins',
     servings: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&q=80&w=800',
+    imageUrl: Pap,
     ingredients: [
       '2 cups peeled black-eyed peas',
       '1 red bell pepper',
@@ -39,7 +83,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Breakfast',
     prepTime: '20 mins',
     servings: 3,
-    imageUrl: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&q=80&w=800',
+    imageUrl: YamnEgg,
     ingredients: [
       '1/2 tuber white yam',
       '4 large eggs',
@@ -66,7 +110,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Lunch',
     prepTime: '45 mins',
     servings: 6,
-    imageUrl: 'https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?auto=format&fit=crop&q=80&w=800',
+    imageUrl: SmokeyJollof,
     ingredients: [
       '3 cups parboiled long-grain rice',
       '4 red bell peppers',
@@ -94,7 +138,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Dinner',
     prepTime: '50 mins',
     servings: 5,
-    imageUrl: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&q=80&w=800',
+    imageUrl: EgusiPoundedYam,
     ingredients: [
       '2 cups ground egusi',
       'Assorted meats',
@@ -121,7 +165,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Dinner',
     prepTime: '40 mins',
     servings: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=800',
+    imageUrl: Eforiro,
     ingredients: [
       '500g spinach',
       '3 red bell peppers',
@@ -148,7 +192,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '35 mins',
     servings: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800',
+    imageUrl: Asun,
     ingredients: [
       '1kg goat meat',
       '4 habaneros',
@@ -174,7 +218,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Lunch',
     prepTime: '50 mins',
     servings: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&q=80&w=800',
+    imageUrl: Ofada,
     ingredients: [
       '3 cups Ofada rice',
       '8 green bell peppers',
@@ -201,7 +245,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Lunch',
     prepTime: '45 mins',
     servings: 6,
-    imageUrl: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&q=80&w=800',
+    imageUrl: FriedRice,
     ingredients: [
       '3 cups long-grain rice',
       'Mixed carrots, peas, and green beans',
@@ -229,7 +273,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Breakfast',
     prepTime: '60 mins',
     servings: 6,
-    imageUrl: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=800',
+    imageUrl: Moimoi,
     ingredients: [
       '3 cups peeled black-eyed peas',
       '2 red bell peppers',
@@ -257,7 +301,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Dinner',
     prepTime: '40 mins',
     servings: 5,
-    imageUrl: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&q=80&w=800',
+    imageUrl: YamPorrige,
     ingredients: [
       '1 medium tuber yam',
       '4 tomatoes',
@@ -285,7 +329,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Dinner',
     prepTime: '55 mins',
     servings: 6,
-    imageUrl: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&q=80&w=800',
+    imageUrl: Afang,
     ingredients: [
       '3 cups afang leaves',
       '2 cups waterleaf',
@@ -312,7 +356,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '35 mins',
     servings: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&q=80&w=800',
+    imageUrl: ChickenSuya,
     ingredients: [
       '700g boneless chicken thighs',
       '1/2 cup ground roasted peanuts',
@@ -340,7 +384,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Dinner',
     prepTime: '65 mins',
     servings: 6,
-    imageUrl: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&q=80&w=800',
+    imageUrl: BangaSoup,
     ingredients: [
       '4 cups palm fruit extract',
       '500g assorted meats',
@@ -367,7 +411,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Lunch',
     prepTime: '55 mins',
     servings: 6,
-    imageUrl: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=800',
+    imageUrl: BeefStew,
     ingredients: [
       '700g beef',
       '6 tomatoes',
@@ -395,7 +439,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Dinner',
     prepTime: '50 mins',
     servings: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&q=80&w=800',
+    imageUrl: PepperSoupGoatMeat,
     ingredients: [
       '700g goat meat',
       '2 scotch bonnets',
@@ -422,7 +466,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Lunch',
     prepTime: '40 mins',
     servings: 5,
-    imageUrl: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&q=80&w=800',
+    imageUrl: CoconutRice,
     ingredients: [
       '3 cups long-grain rice',
       '2 cups coconut milk',
@@ -452,7 +496,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Breakfast',
     prepTime: '15 mins',
     servings: 3,
-    imageUrl: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&q=80&w=800',
+    imageUrl: Pancakes,
     ingredients: [
       '2 cups flour',
       '2 tbsp sugar',
@@ -479,7 +523,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Breakfast',
     prepTime: '10 mins',
     servings: 2,
-    imageUrl: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&q=80&w=800',
+    imageUrl: AvocadoToast,
     ingredients: [
       '2 slices sourdough',
       '1 ripe avocado',
@@ -506,7 +550,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Lunch',
     prepTime: '10 mins',
     servings: 1,
-    imageUrl: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&q=80&w=800',
+    imageUrl: SmokedSalmon,
     ingredients: [
       '1 sesame bagel',
       '3 tbsp cream cheese',
@@ -531,7 +575,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Lunch',
     prepTime: '20 mins',
     servings: 3,
-    imageUrl: 'https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&q=80&w=800',
+    imageUrl: Alfredo,
     ingredients: [
       '350g fettuccine',
       '1/2 cup butter',
@@ -557,7 +601,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Dinner',
     prepTime: '25 mins',
     servings: 2,
-    imageUrl: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800',
+    imageUrl: RibeyeSteak,
     ingredients: [
       '2 ribeye steaks',
       '3 tbsp butter',
@@ -584,7 +628,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Dinner',
     prepTime: '45 mins',
     servings: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&q=80&w=800',
+    imageUrl: TikkaMasala,
     ingredients: [
       '600g chicken thighs',
       '1 cup yogurt',
@@ -612,7 +656,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Lunch',
     prepTime: '30 mins',
     servings: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&q=80&w=800',
+    imageUrl: ShawarmaWrap,
     ingredients: [
       '600g chicken thighs',
       '4 flatbreads',
@@ -640,7 +684,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Dinner',
     prepTime: '75 mins',
     servings: 6,
-    imageUrl: 'https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&q=80&w=800',
+    imageUrl: BeefLasagna,
     ingredients: [
       '12 lasagna sheets',
       '500g ground beef',
@@ -667,7 +711,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Lunch',
     prepTime: '30 mins',
     servings: 3,
-    imageUrl: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&q=80&w=800',
+    imageUrl: Teriyaki,
     ingredients: [
       '500g chicken breast',
       '3 cups jasmine rice',
@@ -694,7 +738,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Dinner',
     prepTime: '35 mins',
     servings: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&q=80&w=800',
+    imageUrl: ThaiGreenCurry,
     ingredients: [
       '500g chicken breast',
       '2 tbsp green curry paste',
@@ -722,7 +766,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Dinner',
     prepTime: '60 mins',
     servings: 5,
-    imageUrl: 'https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&q=80&w=800',
+    imageUrl: SeaFoodPaella,
     ingredients: [
       '2 cups short-grain rice',
       '300g prawns',
@@ -750,7 +794,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Lunch',
     prepTime: '25 mins',
     servings: 3,
-    imageUrl: 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=800',
+    imageUrl: StirFriedNoodle,
     ingredients: [
       '300g egg noodles',
       '400g chicken breast',
@@ -778,7 +822,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Lunch',
     prepTime: '40 mins',
     servings: 2,
-    imageUrl: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&q=80&w=800',
+    imageUrl: Margherita,
     ingredients: [
       '1 pizza dough ball',
       '1/2 cup tomato sauce',
@@ -805,7 +849,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Dinner',
     prepTime: '35 mins',
     servings: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&q=80&w=800',
+    imageUrl: Tuscan,
     ingredients: [
       '4 chicken breasts',
       '1 cup cream',
@@ -832,7 +876,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '25 mins',
     servings: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&q=80&w=800',
+    imageUrl: BeefTacos,
     ingredients: [
       '500g ground beef',
       '8 taco shells',
@@ -863,7 +907,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '30 mins',
     servings: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1528975604071-b4dc52a2d18c?auto=format&fit=crop&q=80&w=800',
+    imageUrl: Puffpuff,
     ingredients: [
       '2 cups flour',
       '1/2 cup sugar',
@@ -889,7 +933,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '20 mins',
     servings: 2,
-    imageUrl: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=800',
+    imageUrl: LavaCake,
     ingredients: [
       '100g dark chocolate',
       '1/2 cup butter',
@@ -915,7 +959,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '40 mins',
     servings: 8,
-    imageUrl: 'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&q=80&w=800',
+    imageUrl: Leches,
     ingredients: [
       '1 sponge cake',
       '1 can evaporated milk',
@@ -941,7 +985,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '40 mins',
     servings: 8,
-    imageUrl: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=800',
+    imageUrl: Chinchin,
     ingredients: [
       '4 cups flour',
       '1 cup sugar',
@@ -969,7 +1013,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '60 mins',
     servings: 8,
-    imageUrl: 'https://images.unsplash.com/photo-1606101273945-e9eba91c0c45?auto=format&fit=crop&q=80&w=800',
+    imageUrl: BananaBread,
     ingredients: [
       '3 ripe bananas',
       '2 cups flour',
@@ -997,7 +1041,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '70 mins',
     servings: 10,
-    imageUrl: 'https://images.unsplash.com/photo-1586788680434-30d324b2d46f?auto=format&fit=crop&q=80&w=800',
+    imageUrl: Redvelvet,
     ingredients: [
       '2 1/2 cups flour',
       '1 1/2 cups sugar',
@@ -1025,7 +1069,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '90 mins',
     servings: 10,
-    imageUrl: 'https://images.unsplash.com/photo-1524351199678-941a58a3df50?auto=format&fit=crop&q=80&w=800',
+    imageUrl: NewyorkCheese,
     ingredients: [
       '250g digestive biscuits',
       '100g butter',
@@ -1053,7 +1097,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '35 mins',
     servings: 12,
-    imageUrl: 'https://images.unsplash.com/photo-1564355808539-22fda35bed7e?auto=format&fit=crop&q=80&w=800',
+    imageUrl: ChocolateBrownies,
     ingredients: [
       '200g dark chocolate',
       '150g butter',
@@ -1081,7 +1125,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '50 mins',
     servings: 6,
-    imageUrl: 'https://images.unsplash.com/photo-1535920527002-b35e96722eb9?auto=format&fit=crop&q=80&w=800',
+    imageUrl: AppleCrumbles,
     ingredients: [
       '6 apples',
       '1/2 cup brown sugar',
@@ -1109,7 +1153,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '25 mins',
     servings: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&q=80&w=800',
+    imageUrl: ChocoMousse,
     ingredients: [
       '200g dark chocolate',
       '1 1/2 cups heavy cream',
@@ -1135,7 +1179,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '65 mins',
     servings: 10,
-    imageUrl: 'https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&q=80&w=800',
+    imageUrl: CarrotCake,
     ingredients: [
       '2 cups grated carrots',
       '2 cups flour',
@@ -1163,7 +1207,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Breakfast',
     prepTime: '15 mins',
     servings: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&q=80&w=800',
+    imageUrl: MangoCoconutParfait,
     ingredients: [
       '2 ripe mangoes',
       '2 cups coconut yogurt',
@@ -1189,7 +1233,7 @@ export const MOCK_RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '30 mins',
     servings: 12,
-    imageUrl: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=800',
+    imageUrl: CoconutMaroons,
     ingredients: [
       '3 cups shredded coconut',
       '3 egg whites',

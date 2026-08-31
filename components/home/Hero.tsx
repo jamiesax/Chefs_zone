@@ -2,7 +2,7 @@
 
 import styles from './Hero.module.css';
 import Image from 'next/image';
-import Logo from '@/public/images/logo.png'
+import Logo from '@/public/branding/logo.png'
 
 interface HeroProps {
   activeCategory: string;

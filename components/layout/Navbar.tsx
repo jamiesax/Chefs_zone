@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import type { User } from '@supabase/supabase-js';
 import styles from './Navbar.module.css';
-import Navlogo from '@/public/images/navlogo.png';
+import Navlogo from '@/public/branding/navlogo.png';
 
 interface NavbarProps {
   user?: User | null;
