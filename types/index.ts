@@ -1,3 +1,5 @@
+import { StaticImageData } from 'next/image';
+
 export interface Ingredient {
   name: string;
   amount: string;
@@ -14,7 +16,7 @@ export interface Recipe {
   category: MealCategory;
   prepTime: string;
   servings: number;
-  imageUrl: string;
+  imageUrl: string | StaticImageData;
   ingredients: string[];
   instructions: string[];
   userId?: string;
