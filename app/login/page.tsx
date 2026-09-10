@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
 import styles from './page.module.css';
 import Image from 'next/image';
-import Logo from '@/public/images/logo.png'
+import Logo from '../../public/branding/logo.png'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
