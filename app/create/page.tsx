@@ -10,46 +10,21 @@ export default function CreateRecipePage() {
   const router = useRouter();
   const supabase = createClient();
 
-  const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('Breakfast');
-  const [region, setRegion] = useState('African');
-  const [prepTime, setPrepTime] = useState('20 mins');
-  const [servings, setServings] = useState(2);
-  const [description, setDescription] = useState('');
+  const [mealRecipe, setMealRecipe] = useState({
+    title: '',
+    category: 'Breakfast',
+    region: 'African',
+    prepTime: '20 mins',
+    servings: 2,
+    description: '',
+    ingredients: [{ name: '', amount: '' }],
+    instructions: [''],
+    imageFile: null as File | null,
+  });
 
-  // File Upload State
-  const [imageFile, setImageFile] = useState<File | null>(null);
-
-  const [ingredients, setIngredients] = useState([{ name: '', amount: '' }]);
-  const [instructions, setInstructions] = useState(['']);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleIngredientChange = (index: number, field: 'name' | 'amount', value: string) => {
-    const list = [...ingredients];
-    list[index][field] = value;
-    setIngredients(list);
-  };
-
-  const addIngredient = () => setIngredients([...ingredients, { name: '', amount: '' }]);
-  const removeIngredient = (index: number) => {
-    if (ingredients.length > 1) {
-      setIngredients(ingredients.filter((_, i) => i !== index));
-    }
-  };
-
-  const handleInstructionChange = (index: number, value: string) => {
-    const list = [...instructions];
-    list[index] = value;
-    setInstructions(list);
-  };
-
-  const addInstruction = () => setInstructions([...instructions, '']);
-  const removeInstruction = (index: number) => {
-    if (instructions.length > 1) {
-      setInstructions(instructions.filter((_, i) => i !== index));
-    }
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,13 +42,13 @@ export default function CreateRecipePage() {
     let uploadedImageUrl = 'https://images.unsplash.com/photo-1495521821757-a1efb6729352?auto=format&fit=crop&w=800&q=80';
 
     // Upload image to Supabase Storage if a file was selected
-    if (imageFile) {
-      const fileExt = imageFile.name.split('.').pop();
+    if (mealRecipe.imageFile) {
+      const fileExt = mealRecipe.imageFile.name.split('.').pop();
       const fileName = `${user.id}/${Date.now()}.${fileExt}`;
 
       const { error: uploadError } = await supabase.storage
         .from('recipe-images')
-        .upload(fileName, imageFile);
+        .upload(fileName, mealRecipe.imageFile);
 
       if (uploadError) {
         setError(`Image upload failed: ${uploadError.message}`);
@@ -92,15 +67,15 @@ export default function CreateRecipePage() {
     const { error: insertError } = await supabase.from('recipes').insert([
       {
         user_id: user.id,
-        title,
-        category,
-        region,
-        prep_time: prepTime,
-        servings: Number(servings),
-        description,
+        title: mealRecipe.title,
+        category: mealRecipe.category,
+        region: mealRecipe.region,
+        prep_time: mealRecipe.prepTime,
+        servings: Number(mealRecipe.servings),
+        description: mealRecipe.description,
         image_url: uploadedImageUrl,
-        ingredients,
-        instructions: instructions.filter((step) => step.trim() !== ''),
+        ingredients: mealRecipe.ingredients,
+        instructions: mealRecipe.instructions.filter((step) => step.trim() !== ''),
       },
     ]);
 
@@ -132,9 +107,9 @@ export default function CreateRecipePage() {
               id="title"
               type="text"
               required
-              placeholder="e.g., Creamy Garlic Pasta"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              placeholder="e.g., Goat Meat Pepper Soup"
+              value={mealRecipe.title}
+              onChange={(e) => setMealRecipe({ ...mealRecipe, title: e.target.value })}
             />
           </div>
 
@@ -142,8 +117,8 @@ export default function CreateRecipePage() {
             <label htmlFor="category">Category</label>
             <select
               id="category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
+              value={mealRecipe.category}
+              onChange={(e) => setMealRecipe({ ...mealRecipe, category: e.target.value })}
             >
               <option value="Breakfast">Breakfast</option>
               <option value="Lunch">Lunch</option>
@@ -157,8 +132,8 @@ export default function CreateRecipePage() {
             <label htmlFor="region">Region</label>
             <select
               id="region"
-              value={region}
-              onChange={(e) => setRegion(e.target.value)}
+              value={mealRecipe.region}
+              onChange={(e) => setMealRecipe({ ...mealRecipe, region: e.target.value })}
             >
               <option value="African">African</option>
               <option value="Intercontinental">Intercontinental</option>
@@ -174,8 +149,8 @@ export default function CreateRecipePage() {
               type="text"
               required
               placeholder="e.g., 25 mins"
-              value={prepTime}
-              onChange={(e) => setPrepTime(e.target.value)}
+              value={mealRecipe.prepTime}
+              onChange={(e) => setMealRecipe({ ...mealRecipe, prepTime: e.target.value })}
             />
           </div>
 
@@ -186,8 +161,8 @@ export default function CreateRecipePage() {
               type="number"
               min="1"
               required
-              value={servings}
-              onChange={(e) => setServings(Number(e.target.value))}
+              value={mealRecipe.servings}
+              onChange={(e) => setMealRecipe({ ...mealRecipe, servings: e.target.value })}
             />
           </div>
         </div>
@@ -201,7 +176,7 @@ export default function CreateRecipePage() {
             accept="image/*"
             onChange={(e) => {
               if (e.target.files && e.target.files[0]) {
-                setImageFile(e.target.files[0]);
+                setMealRecipe({ ...mealRecipe, imageFile: e.target.files[0] });
               }
             }}
           />
@@ -214,34 +189,35 @@ export default function CreateRecipePage() {
             rows={3}
             required
             placeholder="A quick summary of this dish..."
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            value={mealRecipe.description}
+            onChange={(e) => setMealRecipe({ ...mealRecipe, description: e.target.value })}
           />
         </div>
 
         {/* Dynamic Ingredients */}
         <fieldset className={styles.fieldset}>
           <legend>Ingredients</legend>
-          {ingredients.map((ing, idx) => (
+          {mealRecipe.ingredients.map((ing, idx) => (
             <div key={idx} className={styles.dynamicRow}>
               <input
                 type="text"
                 placeholder="Ingredient (e.g., Olive Oil)"
                 required
                 value={ing.name}
-                onChange={(e) => handleIngredientChange(idx, 'name', e.target.value)}
+                onChange={(e) => setMealRecipe({ ...mealRecipe, ingredients: mealRecipe.ingredients.map((i, iIdx) => iIdx === idx ? { ...i, name: e.target.value } : i ) })}
               />
               <input
                 type="text"
                 placeholder="Amount (e.g., 2 tbsp)"
                 required
                 value={ing.amount}
-                onChange={(e) => handleIngredientChange(idx, 'amount', e.target.value)}
+                onChange={(e) => setMealRecipe({ ...mealRecipe, ingredients: mealRecipe.ingredients.map((i, iIdx) => iIdx === idx ? { ...i, amount: e.target.value } : i ) })}
               />
-              {ingredients.length > 1 && (
+              {mealRecipe.ingredients.length > 1 && (
                 <button
                   type="button"
-                  onClick={() => removeIngredient(idx)}
+                  onClick={() => setMealRecipe({ ...mealRecipe, ingredients: mealRecipe.ingredients.filter((_, iIdx) => iIdx !== idx) })}
+
                   className={styles.removeBtn}
                 >
                   ✕
@@ -249,7 +225,7 @@ export default function CreateRecipePage() {
               )}
             </div>
           ))}
-          <button type="button" onClick={addIngredient} className={styles.addBtn}>
+          <button type="button" onClick={() => setMealRecipe({ ...mealRecipe, ingredients: [...mealRecipe.ingredients, { name: '', amount: '' }] })} className={styles.addBtn}>
             + Add Ingredient
           </button>
         </fieldset>
@@ -257,7 +233,7 @@ export default function CreateRecipePage() {
         {/* Dynamic Instructions */}
         <fieldset className={styles.fieldset}>
           <legend>Instructions</legend>
-          {instructions.map((step, idx) => (
+          {mealRecipe.instructions.map((step, idx) => (
             <div key={idx} className={styles.dynamicRow}>
               <span className={styles.stepNum}>{idx + 1}.</span>
               <input
@@ -265,12 +241,12 @@ export default function CreateRecipePage() {
                 placeholder={`Step ${idx + 1} instruction...`}
                 required
                 value={step}
-                onChange={(e) => handleInstructionChange(idx, e.target.value)}
+                onChange={(e) => setMealRecipe({ ...mealRecipe, instructions: mealRecipe.instructions.map((s, sIdx) => sIdx === idx ? e.target.value : s ) })}
               />
-              {instructions.length > 1 && (
+              {mealRecipe.instructions.length > 1 && (
                 <button
                   type="button"
-                  onClick={() => removeInstruction(idx)}
+                  onClick={() => setMealRecipe({ ...mealRecipe, instructions: mealRecipe.instructions.filter((_, sIdx) => sIdx !== idx) })}
                   className={styles.removeBtn}
                 >
                   ✕
@@ -278,7 +254,7 @@ export default function CreateRecipePage() {
               )}
             </div>
           ))}
-          <button type="button" onClick={addInstruction} className={styles.addBtn}>
+          <button type="button" onClick={() => setMealRecipe({ ...mealRecipe, instructions: [...mealRecipe.instructions, ''] })} className={styles.addBtn}>
             + Add Step
           </button>
         </fieldset>

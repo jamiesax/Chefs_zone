@@ -31,7 +31,11 @@ export default function CookModeModal({
   };
 
   return (
-    <div className={styles.overlay}>
+    <div className={styles.overlay} onClick={(e) => {
+      if (e.target === e.currentTarget) {
+        onClose();
+      }
+    }}>
       <div className={styles.container}>
         {/* Header */}
         <header className={styles.header}>

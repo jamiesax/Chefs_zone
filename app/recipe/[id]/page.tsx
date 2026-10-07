@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { MOCK_RECIPES } from '@/data/recipes';
 import RecipeDetailClient from './RecipeDetailClient';
+import FormatStringArray from '@/util/StringFormatter';
 
 interface RecipeDetailPageProps {
   params: Promise<{ id: string }>;
@@ -22,23 +23,12 @@ function parseList(data: unknown): string[] {
   }
 
   if (!Array.isArray(list)) return [];
-
+  // console.log('Parsed List:', list);
+  
   // Safely map elements (strings or objects) into formatted string strings
-  return list.map((item) => {
-    if (typeof item === 'string') return item;
+  return FormatStringArray(list);
 
-    if (typeof item === 'object' && item !== null) {
-      const obj = item as Record<string, unknown>;
-      const amount = obj.amount ? `${obj.amount} ` : '';
-      const unit = obj.unit ? `${obj.unit} ` : '';
-      const name = obj.name || obj.ingredient || obj.title || '';
-
-      const combined = `${amount}${unit}${name}`.trim();
-      return combined || JSON.stringify(item);
-    }
-
-    return String(item);
-  });
+  
 }
 
 export default async function RecipeDetailPage({ params }: RecipeDetailPageProps) {
