@@ -162,7 +162,7 @@ export default function CreateRecipePage() {
               min="1"
               required
               value={mealRecipe.servings}
-              onChange={(e) => setMealRecipe({ ...mealRecipe, servings: e.target.value })}
+              onChange={(e) => setMealRecipe({ ...mealRecipe, servings: Number(e.target.value) })}
             />
           </div>
         </div>
